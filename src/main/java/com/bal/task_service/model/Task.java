@@ -28,7 +28,7 @@ public class Task {
     private LocalDateTime createdAt;
 
     @Column(name="user_id",nullable = false)
-    private String userId;
+    private Long userId;
 
     /* @PrePersist, JPA (Java Persistence API)'de bir entity nesnesi veritabanına kaydedilmeden hemen önce
      * çalıştırılan bir "lifecycle callback" anotasyonudur.

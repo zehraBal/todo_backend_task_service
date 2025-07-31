@@ -10,14 +10,14 @@ import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task,Long> {
 
-    List<Task> findAllByUserId(String userId);
+    List<Task> findAllByUserId(Long userId);
 
-    List<Task> findAllByUserIdAndCompleted(String userId,boolean completed);
+    List<Task> findAllByUserIdAndCompleted(Long userId,boolean completed);
 
-    List<Task> findAllByUserIdAndTitleContainingIgnoreCase(String userOd,String keyword);
+    List<Task> findAllByUserIdAndTitleContainingIgnoreCase(Long userId,String keyword);
 
-    List<Task> findAllByUserIdAndCreatedAtBetween(String userId, LocalDateTime start, LocalDateTime end);
+    List<Task> findAllByUserIdAndCreatedAtBetween(Long userId, LocalDateTime start, LocalDateTime end);
 
-    Optional<Task> findByIdAndUserId(Long id, String userId);
+    Optional<Task> findByIdAndUserId(Long id, Long userId);
 
 }

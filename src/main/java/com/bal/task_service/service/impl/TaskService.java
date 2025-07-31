@@ -21,7 +21,7 @@ public class TaskService implements ITaskService {
 
 
     @Override
-    public TaskResponseDTO createTask(CreateTaskDTO dto, String userId) {
+    public TaskResponseDTO createTask(CreateTaskDTO dto, Long userId) {
         Task task = Task.builder()
                 .title(dto.getTitle())
                 .description(dto.getDescription())
@@ -35,7 +35,7 @@ public class TaskService implements ITaskService {
     }
 
     @Override
-    public List<TaskResponseDTO> getAllTasksByUser(String userId) {
+    public List<TaskResponseDTO> getAllTasksByUser(Long userId) {
         return taskRepository.findAllByUserId(userId)
                 .stream()
                 .map(this::mapToResponseDTO)
@@ -43,14 +43,14 @@ public class TaskService implements ITaskService {
     }
 
     @Override
-    public TaskResponseDTO getTaskById(Long id, String userId) {
+    public TaskResponseDTO getTaskById(Long id, Long userId) {
         Task task = taskRepository.findByIdAndUserId(id, userId)
                 .orElseThrow(() -> new RuntimeException("Task not found or unauthorized access."));
         return mapToResponseDTO(task);
     }
 
     @Override
-    public TaskResponseDTO updateTask(Long id, UpdateTaskDTO dto, String userId) {
+    public TaskResponseDTO updateTask(Long id, UpdateTaskDTO dto, Long userId) {
         Task task = taskRepository.findByIdAndUserId(id, userId)
                 .orElseThrow(() -> new RuntimeException("Task not found or unauthorized access."));
 
@@ -63,7 +63,7 @@ public class TaskService implements ITaskService {
     }
 
     @Override
-    public void deleteTask(Long id, String userId) {
+    public void deleteTask(Long id, Long userId) {
         Task task = taskRepository.findByIdAndUserId(id, userId)
                 .orElseThrow(() -> new RuntimeException("Task not found or unauthorized access."));
         taskRepository.delete(task);

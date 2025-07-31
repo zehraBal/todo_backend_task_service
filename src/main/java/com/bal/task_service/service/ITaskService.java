@@ -8,9 +8,9 @@ import com.bal.task_service.model.Task;
 import java.util.List;
 
 public interface ITaskService {
-    TaskResponseDTO createTask(CreateTaskDTO dto, String userId);
-    List<TaskResponseDTO> getAllTasksByUser(String userId);
-    TaskResponseDTO getTaskById(Long id, String userId);
-    TaskResponseDTO updateTask(Long id, UpdateTaskDTO dto, String userId);
-    void deleteTask(Long id, String userId);
+    TaskResponseDTO createTask(CreateTaskDTO dto, Long userId);
+    List<TaskResponseDTO> getAllTasksByUser(Long userId);
+    TaskResponseDTO getTaskById(Long id, Long userId);
+    TaskResponseDTO updateTask(Long id, UpdateTaskDTO dto,Long userId);
+    void deleteTask(Long id, Long userId);
 }

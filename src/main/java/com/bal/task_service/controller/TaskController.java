@@ -23,7 +23,7 @@ public class TaskController {
             @RequestBody CreateTaskDTO dto,
             @RequestHeader("Authorization") String token) {
 
-        String userId = authServiceClient.getUserIdFromToken(token);
+        Long userId = authServiceClient.getUserIdFromToken(token);
         return taskService.createTask(dto, userId);
     }
 
@@ -31,7 +31,7 @@ public class TaskController {
     public List<TaskResponseDTO> getAllUserTasks(
             @RequestHeader("Authorization") String token) {
 
-        String userId = authServiceClient.getUserIdFromToken(token);
+        Long userId = authServiceClient.getUserIdFromToken(token);
         return taskService.getAllTasksByUser(userId);
     }
 
@@ -40,9 +40,10 @@ public class TaskController {
             @PathVariable Long taskId,
             @RequestHeader("Authorization") String token) {
 
-        String userId = authServiceClient.getUserIdFromToken(token);
+        Long userId = authServiceClient.getUserIdFromToken(token);
         return taskService.getTaskById(taskId, userId);
     }
+
 
     @PutMapping("/{taskId}")
     public TaskResponseDTO updateTask(
@@ -50,7 +51,7 @@ public class TaskController {
             @RequestBody UpdateTaskDTO dto,
             @RequestHeader("Authorization") String token) {
 
-        String userId = authServiceClient.getUserIdFromToken(token);
+        Long userId = authServiceClient.getUserIdFromToken(token);
         return taskService.updateTask(taskId, dto, userId);
     }
 
@@ -59,7 +60,7 @@ public class TaskController {
             @PathVariable Long taskId,
             @RequestHeader("Authorization") String token) {
 
-        String userId = authServiceClient.getUserIdFromToken(token);
+        Long userId = authServiceClient.getUserIdFromToken(token);
         taskService.deleteTask(taskId, userId);
     }
 }
